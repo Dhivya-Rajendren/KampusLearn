@@ -1,0 +1,23 @@
+﻿@model IEnumerable<KampusLearn.Models.Course>
+
+<p class="alert alert-primary">Kampus Learn Course Details</p>
+
+
+<table class="table table-bordered bg-light">
+    <tr>
+        <th>Course Name</th>
+        <th>Technology</th>
+        <th>Duration</th>
+
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @item.CourseName
+            </td>
+            <td>@item.Technology</td>
+            <td>@item.Duration</td>
+        </tr>
+    }
+</table>

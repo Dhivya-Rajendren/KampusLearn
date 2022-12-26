@@ -1,0 +1,35 @@
+﻿@model IEnumerable<KampusLearn.Models.Trainer>
+
+    <p class="alert alert-primary">KampusLearn - Trainer Details </p>
+<div class="card-group">
+
+    @foreach (var item in Model)
+   {
+       
+       <div class="card col-4">
+           @if(item.TrainerName.StartsWith("A"))
+           {
+                <img class="card-img-top" src="/images/FE-1.png"/>
+            }
+            else
+            {
+                 <img class="card-img-top" src="/images/FEmployee.png"/>
+            }
+  
+
+        <div class="card-body">
+            <h3>@item.TrainerName</h3>
+            <p>@item.Skills</p>
+            </div>
+
+            <div class="card-footer">
+                <a asp-action="GetTrainer"  asp-route-trainerId=@item.TrainerId class="btn btn-secondary">View</a>
+                <a href="#" class="btn btn-warning">Edit</a>
+                <a asp-action="DeleteTrainer" asp-route-trainerId=@item.TrainerId class="btn btn-danger">Delete</a>
+
+                </div>
+                  </div>
+   }
+    
+</div>
+    

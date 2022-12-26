@@ -1,0 +1,47 @@
+﻿@model IEnumerable<KampusLearn.Models.Course>
+
+<p class="alert alert-primary"> @ViewBag.PageTitle</p>
+
+
+<a asp-action="CreateCourse" class="btn btn-secondary">Create New Course</a>
+<br/>
+
+@{
+    var count = Model.Count();
+}
+
+
+<table class="table table-bordered bg-light">
+    <tr>
+        <th>Course Name</th>
+        <th>Technology</th>
+        <th>Duration</th>
+        <th>Action</th>
+                <th>Action</th>
+
+    </tr>
+
+@if(count==0)
+{
+    <tr>
+        <td colspan=5>
+            No Courses Available 
+        </td>
+    </tr>
+}
+else{
+
+
+   @foreach(var item in Model)
+    {
+        <tr>
+            <td><a asp-action="GetCourse" asp-controller="Courses"  asp-route-courseId=@item.CourseId>@item.CourseName</a></td>
+            <td>@item.Technology</td>
+            <td>@item.Duration</td>
+            <td><a asp-action="UpdateCourse" asp-controller="Courses"  asp-route-courseId=@item.CourseId class="btn btn-primary">Edit</a></td>
+                        <td><a asp-action="DeleteCourse" asp-controller="Courses"  asp-route-courseId=@item.CourseId class="btn btn-danger">Delete</a></td>
+
+        </tr>
+    }
+    }
+</table>

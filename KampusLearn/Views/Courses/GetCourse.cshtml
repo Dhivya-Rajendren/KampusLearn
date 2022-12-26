@@ -1,0 +1,11 @@
+﻿
+@model KampusLearn.Models.Course
+
+<div class="card">
+
+@await(Component.InvokeAsync("CourseDetail",new {courseId=Model.CourseId}))
+
+    <div class="card-footer">
+        <a asp-action="Index" asp-controller="Courses" class="btn btn-primary">Back To Courses</a>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿
+@model KampusLearn.Models.Course
+
+
+
+<div class="card">
+
+@await(Component.InvokeAsync("CourseDetail",new{courseId=Model.CourseId}))
+
+    <div class="card-footer">
+        <p>Are you sure to delete the Course 
+            <a asp-action="Yes" asp-controller="Courses"  asp-route-courseId=@Model.CourseId class="btn btn-sm btn-danger">Yes</a>
+                        <a asp-action="Index" asp-controller="Courses" class="btn btn-sm btn-primary">No</a>
+
+
+        </p>
+    </div>
+</div>

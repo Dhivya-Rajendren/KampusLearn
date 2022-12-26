@@ -1,0 +1,23 @@
+﻿@model KampusLearn.Models.Course;
+
+
+<form  asp-action="CreateCourse" method="post">
+<div class="form-group w-50">
+    <label  >Course Name</label>
+    <input asp-for=CourseName class="form-control" id="txtCourseName">
+  </div>
+  <div class="form-group w-50">
+    <label >Technology</label>
+    <input asp-for=Technology  class="form-control" id="txtTechnology">
+  </div>
+  <div class="form-group w-50">
+    <label>Duration</label>
+    <input asp-for=Duration  class="form-control" id="txtDuration">
+  </div>
+  <div class="form-group w-50">
+    <label>Fees</label>
+    <input asp-for=Fees  class="form-control" id="txtFees">
+  </div>
+  
+  <input type="submit" class="btn btn-primary" value="Add A Course"/>
+  </form>
