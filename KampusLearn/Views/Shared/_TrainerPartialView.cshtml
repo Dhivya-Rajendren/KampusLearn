@@ -1,0 +1,21 @@
+﻿
+
+
+<div class="card col-4">
+           @if(Model.TrainerName.StartsWith("A"))
+           {
+                <img class="card-img-top" src="/images/FE-1.png"/>
+            }
+            else
+            {
+                 <img class="card-img-top" src="/images/FEmployee.png"/>
+            }
+  
+
+        <div class="card-body">
+            <h3>@Model.TrainerName</h3>
+            <p>@Model.Skills</p>
+            <p>@Model.Email</p>
+            <p>TRainer Comes with Experience of @Model.YearsOfExperience</p>
+            </div>
+            </div>

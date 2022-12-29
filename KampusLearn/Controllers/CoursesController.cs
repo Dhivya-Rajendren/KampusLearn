@@ -7,38 +7,38 @@ namespace KampusLearn.Controllers
 {
     public class CoursesController : Controller
     {
-        CourseRepository repo;
-        DBHelper dbHelper;
+       
         private readonly IConfiguration config;
+        private readonly ICourseRepository repo;
         string conString;
-        public CoursesController(IConfiguration config)
+        public CoursesController(IConfiguration config,ICourseRepository repo)
         {
             this.config = config;
+        this.    repo = repo;
             conString = config.GetConnectionString("KampusLearn");
         }
      
         public IActionResult  Index()
         {
 
-            dbHelper = new DBHelper(conString);
+          
 
             
-           return View(dbHelper.GetAllCourses());
+           return View(repo.GetAllCourses());
         }
 
 
         public IActionResult GetCourses()
         {
-            repo = new CourseRepository();
+           
 
             return View(repo.GetAllCourses());
         }
 
         public IActionResult GetCourse(int courseId)
         {
-            dbHelper = new DBHelper(conString);
 
-            return View(dbHelper.GetCourseById(courseId));
+            return View(repo.GetCourseById(courseId));
         }
       
 
@@ -50,36 +50,32 @@ namespace KampusLearn.Controllers
         [HttpPost]
         public IActionResult CreateCourse(Course course)
         {
-            dbHelper = new DBHelper(conString);
-            dbHelper.AddNewCourse(course);
+          
+            repo.AddNewCourse(course);
             return RedirectToAction("Index");
         }
              
         public IActionResult UpdateCourse(int courseId)
         {
 
-            repo = new CourseRepository();
              return View(repo.GetCourseById(courseId));
         }
 
         [HttpPost]
         public IActionResult UpdateCourse(Course course)
         {
-            repo = new CourseRepository();
             repo.UpdateCourse(course);
             return RedirectToAction("Index"); ;
          }
 
         public IActionResult DeleteCourse(int courseId)
         {
-            dbHelper = new DBHelper(conString);
-            return View(dbHelper.GetCourseById(courseId));
+            return View(repo.GetCourseById(courseId));
                     }
 
     public IActionResult Yes(int courseId)
         {
-            dbHelper = new DBHelper(conString);
-         dbHelper.DeleteCourse(courseId);
+         repo.DeleteCourse(courseId);
             return RedirectToAction("Index");
         }
     

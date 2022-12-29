@@ -1,3 +1,4 @@
+using KampusLearn.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +25,14 @@ namespace KampusLearn
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();// Registering the service for developing and executing the MVC application.
+
+                                              //  services.AddSingleton<ICourseRepository, DBHelper>();//Registering the dependency
+            //Create a object whenever a request is made 
+            
+            services.AddTransient<ICourseRepository, DBHelper>();
+
+            //Create a object per request 
+            // services.AddScoped<ICourseRepository,DBHelper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,15 +8,16 @@ namespace KampusLearn.ViewComponents
     public class CourseDetailViewComponent:ViewComponent
     {
         private readonly IConfiguration config;
+        private readonly ICourseRepository repo;
 
-        public CourseDetailViewComponent(IConfiguration config)
+        public CourseDetailViewComponent(IConfiguration config,ICourseRepository repo)
         {
             this.config = config;
+            this.repo = repo;
         }
        public async Task<IViewComponentResult> InvokeAsync( int courseId)
         {
-            
-            DBHelper repo = new DBHelper(config.GetConnectionString("KampusLearn"));
+                 
 
             return View(repo.GetCourseById(courseId));
         }

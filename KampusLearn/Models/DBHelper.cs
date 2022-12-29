@@ -6,17 +6,17 @@ namespace KampusLearn.Models
 {
     public class DBHelper : ICourseRepository
     {
-        //    IConfiguration configuration;
+            IConfiguration configuration;
         SqlConnection con;
         SqlCommand com;
         SqlDataReader reader;
         string connectionString = null;
 
-        public DBHelper(string conString)
+        public DBHelper(IConfiguration configuration)
         {
-            // this.configuration=con
-            //  connectionString = IConfiguration.("KampusLearn");
-            con = new SqlConnection(conString);
+            
+            this.configuration = configuration;
+            con = new SqlConnection(configuration.GetConnectionString("KampusLearn"));
             con.Open();
         }
         public int AddNewCourse(Course course)
@@ -83,6 +83,8 @@ namespace KampusLearn.Models
         public Course GetCourseById(int courseId)
         {
             Course course = GetAllCourses().Find(x => x.CourseId == courseId);
+            reader.Close();
+
             return course;
         }
 
